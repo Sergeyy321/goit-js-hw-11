@@ -7,7 +7,7 @@ export default class imagesAPIService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
-    this.count = 16;
+    this.count = 40;
   }
 
   async fetchImages() {
