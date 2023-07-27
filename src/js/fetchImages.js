@@ -39,7 +39,7 @@ export default class imagesAPIService {
   }
 
   incrementPage() {
-    this.page += 1;
+   page += 1;
   }
 
   resetPage() {
