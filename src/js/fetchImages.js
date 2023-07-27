@@ -2,13 +2,12 @@ import axios from 'axios';
 
 const API_URL = 'https://pixabay.com/api/';
 const API_KEY = '33447079-0ba3d1fd30cda0252aa7b7ada';
-const perPage = 40;
-let page = 1;
+
 export default class imagesAPIService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
-    this.count = 16;
+    this.count = 40;
   }
 
   async fetchImages() {
@@ -19,8 +18,8 @@ export default class imagesAPIService {
           q: this.searchQuery,
           image_type: 'photo',
           orientation: 'horizontal',
-          page: page += 1,
-          per_page: perPage,
+          page:  this.page,
+          per_page: this.count,
           safesearch: true,
         },
       });

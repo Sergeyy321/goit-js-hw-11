@@ -1,5 +1,5 @@
 import ImageAPiService from './js/fetchImages';
-import LoadMoreBtn from './js/more-btn';
+import LoadMoreBtn from './js/load-more-btn';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import debounce from 'lodash.debounce';
 import SimpleLightbox from 'simplelightbox';
