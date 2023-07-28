@@ -88,15 +88,15 @@ async function handleLoadMoreImage() {
         "We're sorry, but you've reached the end of search results"
       );
       loadMoreBtn.hide();
+    }  if (response.hits.length < 41) {
+      loadMoreBtn.hide();
     }
     Notify.success(`Hooray! We found more images.`);
     refs.galleryContainer.insertAdjacentHTML(
       'beforeend',
       appendGalleryMarkup(response)
     );
-    if (response.hits.length < 41) {
-      loadMoreBtn.hide();
-    }
+   
     imageLightbox.refresh();
     smoothScroll(2);
     loadMoreBtn.enable();
