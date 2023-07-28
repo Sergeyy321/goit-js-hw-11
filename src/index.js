@@ -18,6 +18,7 @@ const imageLightbox = new SimpleLightbox('.gallery-list .gallery__link', {
   captionDelay: 250,
 });
 
+
 refs.searchForm.addEventListener('submit', handleSearchImageClickBtn);
 loadMoreBtn.refs.button.addEventListener('click', handleLoadMoreImage);
 
@@ -86,13 +87,15 @@ async function handleLoadMoreImage() {
         "We're sorry, but you've reached the end of search results"
       );
       loadMoreBtn.hide();
+    }  if (response.hits.length < 41) {
+      loadMoreBtn.hide();
     }
     Notify.success(`Hooray! We found more images.`);
     refs.galleryContainer.insertAdjacentHTML(
       'beforeend',
       appendGalleryMarkup(response)
     );
-
+   
     imageLightbox.refresh();
     smoothScroll(2);
     loadMoreBtn.enable();
