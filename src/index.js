@@ -5,6 +5,9 @@ import debounce from 'lodash.debounce';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+const totalHits = img.totalHits;
+const allImages = pixabayApi.hasMorePhotos();
+    
 const refs = {
   searchForm: document.querySelector('#search-form'),
   searchInput: document.querySelector('input[name="searchQuery"]'),
@@ -78,7 +81,13 @@ async function handleLoadMoreImage() {
   loadMoreBtn.disable();
   try {
     const response = await imageApiService.fetchImages();
-
+if ( (totalHits - allImages) < per_Page) {
+    div.innerHTML += createMarkup(images);
+    lightbox.refresh();
+    Notify.info("We're sorry, but you've reached the end of search results.");
+    btnLoadMore.style.visibility = `hidden`;
+    return;
+    }
     if (
       Math.ceil(response.totalHits / imageApiService.count) ===
       imageApiService.page
@@ -196,3 +205,5 @@ function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+
+
