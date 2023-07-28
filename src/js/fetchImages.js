@@ -46,3 +46,4 @@ export default class imagesAPIService {
     this.page = 1;
   }
 }
+

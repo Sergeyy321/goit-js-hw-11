@@ -18,6 +18,7 @@ const imageLightbox = new SimpleLightbox('.gallery-list .gallery__link', {
   captionDelay: 250,
 });
 
+
 refs.searchForm.addEventListener('submit', handleSearchImageClickBtn);
 loadMoreBtn.refs.button.addEventListener('click', handleLoadMoreImage);
 
@@ -86,6 +87,7 @@ async function handleLoadMoreImage() {
       Notify.failure(
         "We're sorry, but you've reached the end of search results"
       );
+      if (response.hits.length < 41) {
       loadMoreBtn.hide();
     }
     Notify.success(`Hooray! We found more images.`);
@@ -194,3 +196,4 @@ function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+
