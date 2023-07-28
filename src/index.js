@@ -42,7 +42,10 @@ async function handleSearchImageClickBtn(e) {
 
   try {
     const response = await imageApiService.fetchImages();
-
+    if (response.hits.length < 41) {
+      loadMoreBtn.hide();
+      return;
+    }
     if (response.hits.length === 0) {
       Notify.failure(
         'Sorry, there are no images matching your search query. Please try again'
@@ -75,7 +78,6 @@ async function handleSearchImageClickBtn(e) {
 async function handleLoadMoreImage() {
   imageApiService.incrementPage();
   loadMoreBtn.disable();
-
   try {
     const response = await imageApiService.fetchImages();
 
