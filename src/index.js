@@ -4,8 +4,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import debounce from 'lodash.debounce';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-// const totalHits = img.totalHits;
-// const allImages = pixabayApi.hasMorePhotos();
+
 const refs = {
   searchForm: document.querySelector('#search-form'),
   searchInput: document.querySelector('input[name="searchQuery"]'),
@@ -21,7 +20,8 @@ refs.searchForm.addEventListener('submit', handleSearchImageClickBtn);
 loadMoreBtn.refs.button.addEventListener('click', handleLoadMoreImage);
 async function handleSearchImageClickBtn(e) {
   e.preventDefault();
-  console.log(e); //це можна усунути
+  pageNumbers()
+  console.log(e); 
   refs.searchInput.focus();
   imageApiService.query = e.target.searchQuery.value.trim();
   imageApiService.resetPage();
@@ -38,7 +38,7 @@ async function handleSearchImageClickBtn(e) {
     loadMoreBtn.enable();
     const response = await imageApiService.fetchImages();
     if (response.totalHits === 0) {
-      //не потрібно провіряти довжину масиву, у нас є totalHits у кожному виклику цієї функції
+     
       Notify.failure(
         'Sorry, there are no images matching your search query. Please try again'
       );
@@ -51,7 +51,7 @@ async function handleSearchImageClickBtn(e) {
       appendGalleryMarkup(response)
     );
     imageLightbox.refresh();
-    smoothScroll(1.2); //тут ця функція не потрібна, ти при першому виклику функції одразу проскролюєш вниз, її треба використовувати тільки коли натискаєш кнопку ЛоадМоре
+    smoothScroll(1.2);
     if (response.totalHits <= 40) {
       loadMoreBtn.hide();
     }
@@ -77,13 +77,13 @@ async function handleLoadMoreImage() {
     Notify.warning('We are sorry. There was an error');
   }
 }
-// функція перевірки кількості зображень для сторінок. Якщо у нас на новій сторінці менше 40 елементів, то ми прибираємо кнопу
+
 function pageNumbers(response) {
   if (Math.ceil(response.totalHits / 40) !== imageApiService.page) {
     return;
   }
   console.log('aaaaaaa');
-  loadMoreBtn.hide(); //постарайся наступного разу не називату зміну так само як класс тільки з маленької літери, це потім призводить до багатьох помилок
+  loadMoreBtn.hide(); 
   Notify.failure("We're sorry, but you've reached the end of search results");
 }
 function appendGalleryMarkup({ hits }) {
