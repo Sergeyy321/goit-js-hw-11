@@ -19,7 +19,7 @@ const imageLightbox = new SimpleLightbox('.gallery-list .gallery__link', {
 refs.searchForm.addEventListener('submit', handleSearchImageClickBtn);
 loadMoreBtn.refs.button.addEventListener('click', handleLoadMoreImage);
 async function handleSearchImageClickBtn(e) {
-  pageNumbers(response)
+ 
   e.preventDefault();
   console.log(e); 
   refs.searchInput.focus();
@@ -37,6 +37,7 @@ async function handleSearchImageClickBtn(e) {
   try {
     loadMoreBtn.enable();
     const response = await imageApiService.fetchImages();
+     pageNumbers(response)
     if (response.totalHits === 0) {
      
       Notify.failure(
