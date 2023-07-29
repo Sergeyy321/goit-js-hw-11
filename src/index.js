@@ -19,8 +19,8 @@ const imageLightbox = new SimpleLightbox('.gallery-list .gallery__link', {
 refs.searchForm.addEventListener('submit', handleSearchImageClickBtn);
 loadMoreBtn.refs.button.addEventListener('click', handleLoadMoreImage);
 async function handleSearchImageClickBtn(e) {
-  e.preventDefault();
   pageNumbers()
+  e.preventDefault();
   console.log(e); 
   refs.searchInput.focus();
   imageApiService.query = e.target.searchQuery.value.trim();
@@ -82,7 +82,6 @@ function pageNumbers(response) {
   if (Math.ceil(response.totalHits / 40) !== imageApiService.page) {
     return;
   }
-  console.log('aaaaaaa');
   loadMoreBtn.hide(); 
   Notify.failure("We're sorry, but you've reached the end of search results");
 }
