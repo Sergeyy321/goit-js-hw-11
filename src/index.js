@@ -71,20 +71,13 @@ async function handleLoadMoreImage() {
       appendGalleryMarkup(response)
     );
     imageLightbox.refresh();
-    pageNumbers(response);
     smoothScroll(2);
   } catch (error) {
     Notify.warning('We are sorry. There was an error');
   }
 }
 
-function pageNumbers(response) {
-  if (Math.ceil(response.totalHits / 40) !== imageApiService.page) {
-    return;
-  }
-  loadMoreBtn.hide(); 
-  Notify.failure("We're sorry, but you've reached the end of search results");
-}
+
 function appendGalleryMarkup({ hits }) {
   const markUp = hits.map(
     ({
