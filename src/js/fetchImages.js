@@ -1,8 +1,8 @@
 import axios from 'axios';
 const API_URL = 'https://pixabay.com/api/';
 const API_KEY = '33447079-0ba3d1fd30cda0252aa7b7ada';
-const perPage = 40;
-let page = 1; //ця змінна нічого не робить, у тебе в класі прописана змінна, котра далі використовується в коді
+
+; //ця змінна нічого не робить, у тебе в класі прописана змінна, котра далі використовується в коді
 export default class imagesAPIService {
   constructor() {
     this.searchQuery = '';
@@ -25,7 +25,7 @@ export default class imagesAPIService {
           image_type: 'photo',
           orientation: 'horizontal',
           page: this.page, //+this тут необхідно додати this. бо ти працюєш зі змінною класу
-          per_page: perPage,
+          per_page: this.count,
           safesearch: true,
         },
       });
