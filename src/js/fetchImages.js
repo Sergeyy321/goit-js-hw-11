@@ -13,7 +13,8 @@ export default class imagesAPIService {
        }
        if (width < 704) {
          return (this.count = 4);
-       } 
+    } 
+    console.log(width);
   }
   async fetchImages() {
     try {
