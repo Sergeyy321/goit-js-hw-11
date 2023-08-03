@@ -7,7 +7,13 @@ export default class imagesAPIService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
-    this.count = 40;
+       const width = window.innerWidth;
+       if (width >= 704) {
+         return (this.count = 3);
+       }
+       if (width < 704) {
+         return (this.count = 4);
+       } 
   }
   async fetchImages() {
     try {
@@ -40,3 +46,4 @@ export default class imagesAPIService {
     this.page = 1;
   }
 }
+

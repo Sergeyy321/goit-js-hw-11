@@ -19,7 +19,6 @@ const imageLightbox = new SimpleLightbox('.gallery-list .gallery__link', {
 refs.searchForm.addEventListener('submit', handleSearchImageClickBtn);
 loadMoreBtn.refs.button.addEventListener('click', handleLoadMoreImage);
 async function handleSearchImageClickBtn(e) {
- 
   e.preventDefault();
   console.log(e); 
   refs.searchInput.focus();
