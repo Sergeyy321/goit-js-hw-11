@@ -2,19 +2,18 @@ import axios from 'axios';
 const API_URL = 'https://pixabay.com/api/';
 const API_KEY = '33447079-0ba3d1fd30cda0252aa7b7ada';
 
-; //ця змінна нічого не робить, у тебе в класі прописана змінна, котра далі використовується в коді
 export default class imagesAPIService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
-       const width = window.innerWidth;
-       if (width >= 704) {
-         return (this.count = 3);
-       }
-       if (width < 704) {
-         return (this.count = 4);
-    } 
+    const width = window.innerWidth;
     console.log(width);
+    if (width >= 704) {
+      return (this.count = 3);
+    }
+    if (width < 704) {
+      return (this.count = 4);
+    }
   }
   async fetchImages() {
     try {
@@ -24,7 +23,7 @@ export default class imagesAPIService {
           q: this.searchQuery,
           image_type: 'photo',
           orientation: 'horizontal',
-          page: this.page, //+this тут необхідно додати this. бо ти працюєш зі змінною класу
+          page: this.page, 
           per_page: this.count,
           safesearch: true,
         },
@@ -47,4 +46,3 @@ export default class imagesAPIService {
     this.page = 1;
   }
 }
-
